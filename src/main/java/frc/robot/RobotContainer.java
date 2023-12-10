@@ -14,13 +14,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    // driveSub.setDefaultCommand(new DriveCommand(driveSub, controller::getLeftY, controller::getRightY));
+    driveSub.setDefaultCommand(new DriveCommand(driveSub, controller::getLeftY, controller::getRightY));
     
-    driveSub.setDefaultCommand(new DriveCommand(
-      driveSub,
-      () -> -controller.getRawAxis(1),
-      () -> controller.getRawAxis(0)
-    ));
+    // driveSub.setDefaultCommand(new DriveCommand(
+    //   driveSub,
+    //   () -> -controller.getRawAxis(1),
+    //   () -> controller.getRawAxis(0)
+    // ));
 
     configureBindings();
   }
