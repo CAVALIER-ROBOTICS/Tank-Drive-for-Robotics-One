@@ -7,6 +7,8 @@ package frc.robot.subsystems;
 import org.opencv.core.Mat;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FollowerType;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.math.MathUtil;
@@ -19,15 +21,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DriveSubsystem extends SubsystemBase {
   final double defaultDeadband = .02;
 
-  //Make sure these IDs are correspond to the correct motors.
+  // Make sure these IDs are correspond to the correct motors.
   TalonSRX left = new TalonSRX(1);
   TalonSRX right = new TalonSRX(2);
   TalonSRX leftFollower = new TalonSRX(3);
   TalonSRX rightFollower = new TalonSRX(4);
 
   public DriveSubsystem() {
-    leftFollower.follow(left);
-    rightFollower.follow(right);
+    leftFollower.follow(left, FollowerType.PercentOutput);
+    rightFollower.follow(right, FollowerType.PercentOutput);
+    leftFollower.setInverted(InvertType.OpposeMaster);
+    rightFollower.setInverted(InvertType.FollowMaster);
   }
 
   public DriveTrainState driveIK(double drivePercent, double steerPercent) {
@@ -63,10 +67,11 @@ public class DriveSubsystem extends SubsystemBase {
     DriveTrainState state = driveIK(drive, steer);
 
     log(state);
-    
+
     left.set(ControlMode.PercentOutput, state.getLeftPercent());
     right.set(ControlMode.PercentOutput, state.getRightPercent());
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
