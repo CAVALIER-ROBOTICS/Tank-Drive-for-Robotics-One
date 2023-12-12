@@ -24,10 +24,10 @@ public class DriveSubsystem extends SubsystemBase {
   // Make sure these IDs are correspond to the correct motors.
   // You can view motor IDs in Phoenix Tuner.
   
-  TalonSRX left = new TalonSRX(1);
-  TalonSRX right = new TalonSRX(2);
-  TalonSRX leftFollower = new TalonSRX(3);
-  TalonSRX rightFollower = new TalonSRX(4);
+  TalonSRX left = new TalonSRX(1); //Front left
+  TalonSRX right = new TalonSRX(2); //Front right
+  TalonSRX leftFollower = new TalonSRX(3); //Back left
+  TalonSRX rightFollower = new TalonSRX(4); //Back right
 
   public DriveSubsystem() {
     leftFollower.follow(left, FollowerType.PercentOutput);
