@@ -22,6 +22,8 @@ public class DriveSubsystem extends SubsystemBase {
   final double defaultDeadband = .02;
 
   // Make sure these IDs are correspond to the correct motors.
+  // You can view motor IDs in Phoenix Tuner.
+  
   TalonSRX left = new TalonSRX(1);
   TalonSRX right = new TalonSRX(2);
   TalonSRX leftFollower = new TalonSRX(3);
